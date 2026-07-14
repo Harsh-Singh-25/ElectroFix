@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Service | ElectroFix</title>
+<meta name="description" content="Book a certified technician for your appliance repair — pick a service, a slot, and get an upfront estimate.">
+
+<link rel="stylesheet" href="booking.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+        <i class="fa-solid fa-bolt"></i>
+        ElectroFix
+    </a>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <a href="tel:+911234567890" class="btn">
+        <i class="fa-solid fa-phone"></i>
+        Call Instead
+    </a>
+</header>
+
+<main class="page">
+    <div class="page-head">
+        <span class="eyebrow">New service ticket</span>
+        <h1>Book Your Repair</h1>
+        <p>Fill in the details below — a certified technician will confirm your slot within minutes.</p>
+    </div>
+
+    <div class="booking-grid">
+
+        <!-- ================= FORM ================= -->
+        <div class="form-box">
+            <form id="bookingForm">
+
+                <div class="form-section">
+                    <span class="section-label">01 · Contact details</span>
+
+                    <div class="row">
+                        <div class="input-box">
+                            <label for="name">Full Name</label>
+                            <input id="name" name="name" type="text" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="mobile">Mobile Number</label>
+                            <input id="mobile" name="mobile" type="tel" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">Email <span class="optional">(optional)</span></label>
+                        <input id="email" name="email" type="email" placeholder="Enter email">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <span class="section-label">02 · Service details</span>
+
+                    <div class="input-box">
+                        <label for="service">Select Service</label>
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected>Choose an appliance</option>
+                            <option value="AC Repair">SVC-01 · AC Repair</option>
+                            <option value="LED TV Repair">SVC-02 · LED TV Repair</option>
+                            <option value="Refrigerator">SVC-03 · Refrigerator</option>
+                            <option value="Washing Machine">SVC-04 · Washing Machine</option>
+                            <option value="Microwave">SVC-05 · Microwave</option>
+                            <option value="Geyser">SVC-06 · Geyser Repair</option>
+                            <option value="Air Cooler">SVC-07 · Air Cooler</option>
+                            <option value="Ceiling Fan">SVC-08 · Ceiling Fan</option>
+                            <option value="Mixer Grinder">SVC-09 · Mixer Grinder</option>
+                            <option value="RO Water Purifier">SVC-10 · RO Water Purifier</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="issue">Problem Description</label>
+                        <textarea id="issue" name="issue" rows="4" placeholder="Briefly describe the issue — e.g. AC not cooling, unusual noise"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <span class="section-label">03 · Schedule</span>
+
+                    <div class="row">
+                        <div class="input-box">
+                            <label for="date">Preferred Date</label>
+                            <input id="date" name="date" type="date" required>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="time">Preferred Time</label>
+                            <input id="time" name="time" type="time" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <span class="section-label">04 · Address</span>
+
+                    <div class="input-box">
+                        <label for="address">Complete Address</label>
+                        <textarea id="address" name="address" rows="3" placeholder="House no., street, area, city, PIN code"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit">
+                    <i class="fa-solid fa-ticket"></i>
+                    Submit Service Ticket
+                </button>
+
+                <p class="form-note"><i class="fa-solid fa-shield-halved"></i> Your details are only used to schedule and confirm this visit.</p>
+            </form>
+        </div>
+
+        <!-- ================= LIVE TICKET PREVIEW ================= -->
+        <aside class="diagnostic-panel" id="ticketPreview" aria-live="polite">
+            <div class="panel-head">
+                <span class="led"></span>
+                TICKET PREVIEW
+            </div>
+
+            <div class="panel-row">
+                <span>Ticket ID</span>
+                <strong id="ticketId">—</strong>
+            </div>
+            <div class="panel-row">
+                <span>Customer</span>
+                <strong id="pName">—</strong>
+            </div>
+            <div class="panel-row">
+                <span>Service</span>
+                <strong id="pService">—</strong>
+            </div>
+            <div class="panel-row">
+                <span>Slot</span>
+                <strong id="pSlot">—</strong>
+            </div>
+            <div class="panel-row">
+                <span>Status</span>
+                <strong class="status-pending">Awaiting submission</strong>
+            </div>
+
+            <div class="panel-foot">A confirmation call follows within <b>15 minutes</b> of booking.</div>
+        </aside>
+
+    </div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="logo footer-logo"><i class="fa-solid fa-bolt"></i> ElectroFix</div>
+        <div class="footer-status"><span class="led"></span> All systems operational</div>
+        <p>© 2026 ElectroFix. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Generates a friendly ticket ID and keeps the preview panel in sync as the person types.
+    const ticketId = "TCK-" + Date.now().toString().slice(-6);
+    document.getElementById("ticketId").textContent = ticketId;
+
+    const nameEl = document.getElementById("name");
+    const serviceEl = document.getElementById("service");
+    const dateEl = document.getElementById("date");
+    const timeEl = document.getElementById("time");
+
+    const pName = document.getElementById("pName");
+    const pService = document.getElementById("pService");
+    const pSlot = document.getElementById("pSlot");
+
+    function updatePreview(){
+        pName.textContent = nameEl.value.trim() || "—";
+        pService.textContent = serviceEl.options[serviceEl.selectedIndex]?.text.split("· ")[1] || serviceEl.value || "—";
+        const d = dateEl.value ? new Date(dateEl.value + "T00:00:00").toLocaleDateString(undefined, { day:"numeric", month:"short" }) : "";
+        const t = timeEl.value || "";
+        pSlot.textContent = (d || t) ? `${d} ${t}`.trim() : "—";
+    }
+
+    [nameEl, serviceEl, dateEl, timeEl].forEach(el => el.addEventListener("input", updatePreview));
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        const statusEl = document.querySelector(".status-pending");
+        statusEl.textContent = "Confirmed ✓";
+        statusEl.classList.remove("status-pending");
+        statusEl.classList.add("status-confirmed");
+    });
+</script>
+
+</body>
+</html>
