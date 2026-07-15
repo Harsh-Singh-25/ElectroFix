@@ -1,0 +1,174 @@
+/* From Uiverse.io by m1her */ 
+.switch {
+  width: 70px;
+  height: 25px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  cursor: pointer;
+  position: relative;
+  width: 70%;
+  height: 100%;
+  background-color: rgb(8, 8, 8);
+  transition: all 0.4s cubic-bezier(0.99, 0.1, 0.1, 0.99);
+  border-radius: 5px;
+  box-shadow:
+    inset 0px 0px 1px 0px rgba(0, 0, 0, 1),
+    inset 90px 0px 50px -50px rgba(126, 4, 4, 0.56);
+  border: 2px solid black;
+}
+
+.slider-btn {
+  position: absolute;
+  content: "";
+  aspect-ratio: 6/4;
+  border-radius: 3px;
+  left: 2px;
+  top: 2px;
+  bottom: 2px;
+  right: auto;
+  background: linear-gradient(to bottom, #333333, #242323);
+  border: 1px solid #2b2b2b;
+  background-color: #333333;
+  box-shadow:
+    0px 10px 5px 1px rgba(0, 0, 0, 0.15),
+    inset 10px 0px 10px -5px rgba(126, 4, 4, 0.1);
+  transition: all 0.4s cubic-bezier(0.99, 0.1, 0.1, 0.99);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.texture {
+  width: 2px;
+  height: 70%;
+  background-color: #202020ea;
+  box-shadow:
+    -0.7px -1.5px 1px 0px rgba(192, 192, 192, 0.3),
+    0px 2px 3px rgb(0, 0, 0, 0.3);
+  transition: 0.25s;
+}
+
+.light {
+  width: 4px;
+  height: 4px;
+  border: 1px solid #222121;
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.99, 0.1, 0.1, 0.99);
+  background-color: rgb(230, 14, 14);
+  box-shadow: 0px 0px 10px 1px rgb(241, 28, 28);
+}
+
+.switch input:checked + .slider {
+  box-shadow:
+    inset 0px 0px 1px 0px rgba(0, 0, 0, 1),
+    inset -85px 0px 50px -50px rgba(1, 78, 4, 0.6);
+}
+
+.switch input:checked + .slider .slider-btn {
+  transform: translateX(66%);
+  box-shadow:
+    0px 10px 5px 1px rgba(0, 0, 0, 0.15),
+    inset -10px 0px 10px -5px rgba(1, 112, 4, 0.1);
+}
+
+.switch input:checked + .slider .slider-btn .light {
+  background-color: var(--on) ;
+  box-shadow: 0px 0px 10px 0px rgb(57, 230, 14);
+}
+
+body.dark {
+    background: #0b111d;
+    color: #ffffff;
+}
+
+body.dark a {
+    color: #b9d4ff;
+}
+
+body.dark header {
+    background: #0f172a;
+    border-color: rgba(255,255,255,.08);
+}
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6 {
+    color: #e7edf8;
+}
+
+body.dark .logo,
+body.dark nav ul li > a,
+body.dark .eyebrow,
+body.dark .section-label,
+body.dark label,
+body.dark .page-head p,
+body.dark .section-sub,
+body.dark .pricing-note,
+body.dark .form-note,
+body.dark .issue,
+body.dark .card,
+body.dark .service-error,
+body.dark .contact-card,
+body.dark .diagnostic-panel,
+body.dark .footer-inner {
+    color: #dfe7f4;
+}
+
+body.dark .form-box,
+body.dark .card,
+body.dark .issue,
+body.dark .contact-card,
+body.dark .service-error,
+body.dark .diagnostic-panel,
+body.dark .footer-inner {
+    background: #111b2f;
+    border-color: #24314b;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+    background: #0d1628;
+    border-color: #2b3a55;
+    color: #e7edf8;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+    color: #8fa8d0;
+}
+
+body.dark .btn {
+    background: #ff8f43;
+    border-color: #ff8f43;
+}
+
+body.dark .btn-outline {
+    color: #dbe2ea;
+    border-color: rgba(255,255,255,.18);
+}
+
+body.dark .btn-outline:hover {
+    background: rgba(255,255,255,.08);
+}
+
+body.dark .hero-content h1,
+body.dark .hero-content p,
+body.dark .hero-trust .trust-item,
+body.dark .pricing th,
+body.dark .pricing td,
+body.dark .panel-row span,
+body.dark .panel-row strong {
+    color: #e7edf8;
+}
+
+body.dark table {
+    border-color: #2c3b58;
+}
+
+body.dark .pricing thead th,
+body.dark .pricing tbody td {
+    border-color: #24314b;
+}

@@ -6,7 +6,8 @@
 <title>Book a Service | ElectroFix</title>
 <meta name="description" content="Book a certified technician for your appliance repair — pick a service, a slot, and get an upfront estimate.">
 
-<link rel="stylesheet" href="booking.css">
+<link rel="stylesheet" href="css/booking.css">
+<link rel="stylesheet" href="css/dark-mode.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,11 +25,24 @@
 
     <nav>
         <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../index.html#services">Services</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
         </ul>
     </nav>
+
+    <label class="switch">
+        <input id="themeToggle" type="checkbox" />
+        <div class="slider">
+          <div class="slider-btn">
+            <div class="light"></div>
+            <div class="texture"></div>
+            <div class="texture"></div>
+            <div class="texture"></div>
+            <div class="light"></div>
+          </div>
+        </div>
+      </label>
 
     <a href="tel:+911234567890" class="btn">
         <i class="fa-solid fa-phone"></i>
@@ -203,7 +217,10 @@
         statusEl.classList.remove("status-pending");
         statusEl.classList.add("status-confirmed");
     });
+
+    
 </script>
 
 </body>
+<script src="../js/dark-mode.js"></script>
 </html>

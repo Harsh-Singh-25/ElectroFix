@@ -1,15 +1,17 @@
 const themeToggle = document.getElementById("themeToggle");
 
-if (themeToggle) {
-    // Check if user already selected a theme
-    const savedTheme = localStorage.getItem("theme");
+// Apply saved theme when page loads
+const savedTheme = localStorage.getItem("theme");
 
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark");
+if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    if (themeToggle) {
         themeToggle.checked = true;
     }
+}
 
-    // Toggle theme
+// Listen for toggle change
+if (themeToggle) {
     themeToggle.addEventListener("change", () => {
         if (themeToggle.checked) {
             document.body.classList.add("dark");

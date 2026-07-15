@@ -382,6 +382,14 @@ nav ul li > a:hover{ color:var(--orange); }
     padding:90px 8%;
 }
 
+.pricing p{
+   
+   color:var(--text-on-dark-muted);
+   width:100%;
+   max-width:640px;
+
+}
+
 .pricing h2{ color:#fff; }
 
 table{

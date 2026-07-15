@@ -6,8 +6,10 @@
     <title>ElectroFix | Electronic Appliance Repair Services</title>
     <meta name="description" content="Certified electronic appliance repair at your doorstep. AC, TV, refrigerator, washing machine and more — same-day service, transparent pricing, warranty included." />
 
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
+    <script src="js/main.js" defer></script>
+    <script src="js/dark-mode.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,16 +43,16 @@
             </button>
 
             <ul class="dropdown-menu">
-              <li><a href="Services/ac.html"><span class="tag">01</span> AC Repair</a></li>
-              <li><a href="Services/tv.html"><span class="tag">02</span> LED TV Repair</a></li>
-              <li><a href="Services/fridge.html"><span class="tag">03</span> Refrigerator</a></li>
-              <li><a href="Services/washingmachine.html"><span class="tag">04</span> Washing Machine</a></li>
-              <li><a href="Services/microwave.html"><span class="tag">05</span> Microwave</a></li>
-              <li><a href="Services/geyser.html"><span class="tag">06</span> Geyser Repair</a></li>
-              <li><a href="Services/cooler.html"><span class="tag">07</span> Air Cooler</a></li>
-              <li><a href="Services/fan.html"><span class="tag">08</span> Ceiling Fan</a></li>
-              <li><a href="Services/mixer.html"><span class="tag">09</span> Mixer Grinder</a></li>
-              <li><a href="Services/waterpurifier.html"><span class="tag">10</span> RO Water Purifier</a></li>
+              <li><a href="Services/services.html?id=ac"><span class="tag">01</span> AC Repair</a></li>
+              <li><a href="Services/services.html?id=tv"><span class="tag">02</span> LED TV Repair</a></li>
+              <li><a href="Services/services.html?id=fridge"><span class="tag">03</span> Refrigerator</a></li>
+              <li><a href="Services/services.html?id=washingmachine"><span class="tag">04</span> Washing Machine</a></li>
+              <li><a href="Services/services.html?id=microwave"><span class="tag">05</span> Microwave</a></li>
+              <li><a href="Services/services.html?id=geyser"><span class="tag">06</span> Geyser Repair</a></li>
+              <li><a href="Services/services.html?id=cooler"><span class="tag">07</span> Air Cooler</a></li>
+              <li><a href="Services/services.html?id=fan"><span class="tag">08</span> Ceiling Fan</a></li>
+              <li><a href="Services/services.html?id=mixer"><span class="tag">09</span> Mixer Grinder</a></li>
+              <li><a href="Services/services.html?id=waterpurifier"><span class="tag">10</span> RO Water Purifier</a></li>
             </ul>
           </li>
 
@@ -62,20 +64,19 @@
         
       </nav>
 
-<!-- From Uiverse.io by m1her --> 
-<label class="switch">
-  <input id="themeToggle" type="checkbox" />
-  <div class="slider">
-    <div class="slider-btn">
-      <div class="light"></div>
-      <div class="texture"></div>
-      <div class="texture"></div>
-      <div class="texture"></div>
-      <div class="light"></div>
-    </div></div>
-></label>
-
-
+      <!-- From Uiverse.io by m1her -->
+      <label class="switch">
+        <input id="themeToggle" type="checkbox" />
+        <div class="slider">
+          <div class="slider-btn">
+            <div class="light"></div>
+            <div class="texture"></div>
+            <div class="texture"></div>
+            <div class="texture"></div>
+            <div class="light"></div>
+          </div>
+        </div>
+      </label>
 
       <a href="#contact" class="btn">
         <i class="fa-solid fa-ticket"></i>
@@ -287,7 +288,7 @@
         </div>
         <div class="contact-actions">
           <a href="tel:+911234567890" class="btn"><i class="fa-solid fa-phone"></i> Call Now</a>
-          <a href="Forms/booking.html" class="btn-outline dark">Book Technician</a>
+          <a href="booking.html" class="btn-outline dark">Book Technician</a>
         </div>
       </div>
     </section>
@@ -304,10 +305,16 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="Services/ac.html">AC Repair</a></li>
-            <li><a href="Services/tv.html">LED TV Repair</a></li>
-            <li><a href="Services/fridge.html">Refrigerator</a></li>
-            <li><a href="Services/washing.html">Washing Machine</a></li>
+            <li><a href="Services/services.html?id=ac">AC Repair</a></li>
+            <li><a href="Services/services.html?id=tv">LED TV Repair</a></li>
+            <li><a href="Services/services.html?id=fridge">Refrigerator</a></li>
+            <li><a href="Services/services.html?id=washingmachine">Washing Machine</a></li>
+            <li><a href="Services/services.html?id=microwave">Microwave</a></li>
+            <li><a href="Services/services.html?id=geyser">Geyser Repair</a></li>
+            <li><a href="Services/services.html?id=cooler">Air Cooler</a></li>
+            <li><a href="Services/services.html?id=fan">Ceiling Fan</a></li>
+            <li><a href="Services/services.html?id=mixer">Mixer Grinder</a></li>
+            <li><a href="Services/services.html?id=waterpurifier">RO Water Purifier</a></li>
           </ul>
         </div>
 
@@ -340,5 +347,4 @@
       </div>
     </footer>
   </body>
-  <script src="script.js"></script>
 </html>
