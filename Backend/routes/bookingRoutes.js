@@ -1,30 +1,25 @@
-const mongoose = require("mongoose");
+const express=require("express");
 
-const bookingSchema = new mongoose.Schema({
+const router=express.Router();
 
-    name:String,
+const{
 
-    phone:String,
+createBooking,
 
-    email:String,
+getBookings,
 
-    service:String,
+updateBooking,
 
-    problem:String,
+deleteBooking
 
-    date:String,
+}=require("../controllers/bookingController");
 
-    time:String,
+router.post("/",createBooking);
 
-    address:String,
+router.get("/",getBookings);
 
-    status:{
-        type:String,
-        default:"Pending"
-    }
+router.put("/:id",updateBooking);
 
-},{
-    timestamps:true
-});
+router.delete("/:id",deleteBooking);
 
-module.exports=mongoose.model("Booking",bookingSchema);
+module.exports=router;

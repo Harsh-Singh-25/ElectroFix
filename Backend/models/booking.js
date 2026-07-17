@@ -14,6 +14,16 @@ const bookingSchema = new mongoose.Schema(
 
     email: {
       type: String,
+      required: true,
+    },
+
+    ticketId: {
+      type: String,
+      unique: true,
+      default: () =>
+        `EF-${Date.now().toString().slice(-6)}-${Math.floor(
+          Math.random() * 900 + 100
+        )}`,
     },
 
     service: {

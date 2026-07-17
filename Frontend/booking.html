@@ -82,8 +82,9 @@
                     </div>
 
                     <div class="input-box">
-                        <label for="email">Email <span class="optional">(optional)</span></label>
-                        <input id="email" name="email" type="email" placeholder="Enter email">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="Enter email" required>
+                        <p class="email-help">Your ticket will be shared immediately via email.</p>
                     </div>
                 </div>
 
@@ -163,6 +164,10 @@
                 <strong id="pName">—</strong>
             </div>
             <div class="panel-row">
+                <span>Email</span>
+                <strong id="pEmail">—</strong>
+            </div>
+            <div class="panel-row">
                 <span>Service</span>
                 <strong id="pService">—</strong>
             </div>
@@ -189,39 +194,6 @@
     </div>
 </footer>
 
-<script>
-    // Generates a friendly ticket ID and keeps the preview panel in sync as the person types.
-    const ticketId = "TCK-" + Date.now().toString().slice(-6);
-    document.getElementById("ticketId").textContent = ticketId;
-
-    const nameEl = document.getElementById("name");
-    const serviceEl = document.getElementById("service");
-    const dateEl = document.getElementById("date");
-    const timeEl = document.getElementById("time");
-
-    const pName = document.getElementById("pName");
-    const pService = document.getElementById("pService");
-    const pSlot = document.getElementById("pSlot");
-
-    function updatePreview(){
-        pName.textContent = nameEl.value.trim() || "—";
-        pService.textContent = serviceEl.options[serviceEl.selectedIndex]?.text.split("· ")[1] || serviceEl.value || "—";
-        const d = dateEl.value ? new Date(dateEl.value + "T00:00:00").toLocaleDateString(undefined, { day:"numeric", month:"short" }) : "";
-        const t = timeEl.value || "";
-        pSlot.textContent = (d || t) ? `${d} ${t}`.trim() : "—";
-    }
-
-    [nameEl, serviceEl, dateEl, timeEl].forEach(el => el.addEventListener("input", updatePreview));
-
-    document.getElementById("bookingForm").addEventListener("submit", function(e){
-        e.preventDefault();
-        const statusEl = document.querySelector(".status-pending");
-        statusEl.textContent = "Confirmed ✓";
-        statusEl.classList.remove("status-pending");
-        statusEl.classList.add("status-confirmed");
-    });
-
-</script>
-
 </body>
+<script src="js/booking.js"></script>
 </html>
