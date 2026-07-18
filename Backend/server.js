@@ -8,6 +8,12 @@ const connectDB = require("./config/db");
 
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://electro-fix-nu.vercel.app",
+    "https://electro-fix-tawny.vercel.app"
+];
 
 dotenv.config();
 
@@ -16,12 +22,13 @@ connectDB();
 const app = express();
 
 app.use(cors({
-    origin: [
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "https://electro-fix-nu.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: function(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true
 }));
 
