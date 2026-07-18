@@ -1,26 +1,33 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    family: 4,
+
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASSWORD
     }
 });
 
-// Verify SMTP connection when server starts
-transporter.verify((error, success) => {
+// Verify SMTP connection
+transporter.verify((error) => {
     if (error) {
-        console.log("❌ SMTP Error:");
+        console.log("❌ SMTP Error");
         console.log(error);
     } else {
-        console.log("✅ SMTP Server Ready");
+        console.log("✅ Gmail SMTP Connected");
     }
 });
 
 const sendEmail = async (options) => {
     try {
-
         const info = await transporter.sendMail({
             from: `ElectroFix <${process.env.EMAIL}>`,
             to: options.email,
@@ -29,15 +36,11 @@ const sendEmail = async (options) => {
         });
 
         console.log("✅ Email Sent Successfully");
-        console.log("Sending To:", options.email);
-console.log("Accepted:", info.accepted);
-console.log("Rejected:", info.rejected);
-console.log("Response:", info.response);
+        console.log(info.response);
+
     } catch (error) {
-
-        console.error("❌ Email Error");
-        console.error(error);
-
+        console.log("❌ Email Error");
+        console.log(error);
         throw error;
     }
 };
