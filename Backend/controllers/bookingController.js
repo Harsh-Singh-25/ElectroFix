@@ -11,7 +11,7 @@ const createBooking = async (req, res) => {
     console.log("2. Booking saved");
 
     try {
-      console.log("3. Sending admin email");
+      console.log("Sending email to:", booking.email);
 
       await sendEmail({
         email: process.env.EMAIL,
