@@ -24,32 +24,27 @@ transporter.verify((error) => {
     }
 });
 
-const sendEmail = async ({ email, subject, message }) => {
-  if (!process.env.EMAIL || !process.env.EMAIL_PASSWORD) {
-    console.log("⚠️ SMTP credentials not configured. Skipping email send.");
-    return false;
-  }
-
-  if (!email) {
-    console.log("⚠️ Recipient email missing. Skipping email send.");
-    return false;
-  }
-
+const sendEmail = async (options) => {
   try {
+    console.log("📧 Sending email...");
+    console.log("To:", options.email);
+    console.log("Subject:", options.subject);
+
     const info = await transporter.sendMail({
-      from: process.env.EMAIL,
-      to: email,
-      subject,
-      html: message,
+      from: `ElectroFix <${process.env.EMAIL}>`,
+      to: options.email,
+      subject: options.subject,
+      html: options.message,
     });
 
     console.log("✅ Email Sent Successfully");
-    console.log(info.response);
-    return true;
+    console.log(info);
+
   } catch (error) {
-    console.log("❌ Email Error");
-    console.log(error);
-    return false;
+    console.error("❌ Email Error");
+    console.error(error);
+
+    throw error;
   }
 };
 
