@@ -1,10 +1,17 @@
+const dns = require("dns");
+
+dns.setDefaultResultOrder("ipv4first");
+
+const dotenv = require("dotenv");
+dotenv.config();
+const result = dotenv.config();
+
 const express = require("express");
 
 const cors = require("cors");
 
-const dotenv = require("dotenv");
-
 const connectDB = require("./config/db");
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 
@@ -15,9 +22,7 @@ const allowedOrigins = [
     "https://electro-fix-tawny.vercel.app"
 ];
 
-dotenv.config();
 
-connectDB();
 
 const app = express();
 

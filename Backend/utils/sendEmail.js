@@ -1,21 +1,19 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    family: 4,
-
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
-
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD
-    }
+ host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+  family: 4, // Use IPv4
+  connectionTimeout: 10000,
 });
 
+console.log("EMAIL_USER:", process.env.EMAIL);
+console.log("EMAIL_PASS:", process.env.EMAIL_PASSWORD ? "Loaded ✅" : "Not Loaded ❌");
 // Verify SMTP connection
 transporter.verify((error) => {
     if (error) {
@@ -26,23 +24,33 @@ transporter.verify((error) => {
     }
 });
 
-const sendEmail = async (options) => {
-    try {
-        const info = await transporter.sendMail({
-            from: `ElectroFix <${process.env.EMAIL}>`,
-            to: options.email,
-            subject: options.subject,
-            html: options.message
-        });
+const sendEmail = async ({ email, subject, message }) => {
+  if (!process.env.EMAIL || !process.env.EMAIL_PASSWORD) {
+    console.log("⚠️ SMTP credentials not configured. Skipping email send.");
+    return false;
+  }
 
-        console.log("✅ Email Sent Successfully");
-        console.log(info.response);
+  if (!email) {
+    console.log("⚠️ Recipient email missing. Skipping email send.");
+    return false;
+  }
 
-    } catch (error) {
-        console.log("❌ Email Error");
-        console.log(error);
-        throw error;
-    }
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL,
+      to: email,
+      subject,
+      html: message,
+    });
+
+    console.log("✅ Email Sent Successfully");
+    console.log(info.response);
+    return true;
+  } catch (error) {
+    console.log("❌ Email Error");
+    console.log(error);
+    return false;
+  }
 };
 
 module.exports = sendEmail;
