@@ -1,19 +1,17 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
- host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD,
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASS,
   },
-  family: 4, // Use IPv4
-  connectionTimeout: 10000,
 });
 
-console.log("EMAIL_USER:", process.env.EMAIL);
-console.log("EMAIL_PASS:", process.env.EMAIL_PASSWORD ? "Loaded ✅" : "Not Loaded ❌");
+console.log("BREVO_USER:", process.env.BREVO_USER ? "Loaded ✅" : "Not Loaded ❌");
+console.log("BREVO_PASS:", process.env.BREVO_PASS ? "Loaded ✅" : "Not Loaded ❌");
 // Verify SMTP connection
 transporter.verify((error) => {
     if (error) {
