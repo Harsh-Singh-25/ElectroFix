@@ -14,7 +14,7 @@ const createBooking = async (req, res) => {
       console.log("Sending email to:", booking.email);
 
       await sendEmail({
-        email: process.env.EMAIL,
+        email: "harshsingh252003@gmail.com",
         subject: `New Booking ${booking.ticketId}`,
         message: "<h1>Test</h1>",
       });

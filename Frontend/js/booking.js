@@ -67,7 +67,7 @@ form.addEventListener("submit", async function (e) {
 
     try {
 
-        const response = await fetch("https://electrofix-backend-dvun.onrender.com/api/booking", {
+        const response = await fetch("https://electrofix-backend-dvun.onrender.com", {
 
             method: "POST",
 

@@ -1,49 +1,55 @@
-const nodemailer = require("nodemailer");
+const axios = require("axios");
 
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.BREVO_USER,
-    pass: process.env.BREVO_PASS,
-  },
-});
-
-console.log("BREVO_USER:", process.env.BREVO_USER ? "Loaded ✅" : "Not Loaded ❌");
-console.log("BREVO_PASS:", process.env.BREVO_PASS ? "Loaded ✅" : "Not Loaded ❌");
-// Verify SMTP connection
-transporter.verify((error) => {
-    if (error) {
-        console.log("❌ SMTP Error");
-        console.log(error);
-    } else {
-        console.log("✅ Gmail SMTP Connected");
-    }
-});
-
-const sendEmail = async (options) => {
+async function sendEmail(options) {
   try {
-    console.log("📧 Sending email...");
+    console.log("🚀 Sending email...");
+    console.log("API Key:", process.env.BREVO_API_KEY ? "Loaded ✅" : "Missing ❌");
+    console.log("From:", process.env.EMAIL_FROM);
     console.log("To:", options.email);
-    console.log("Subject:", options.subject);
 
-    const info = await transporter.sendMail({
-      from: `ElectroFix <${process.env.EMAIL}>`,
-      to: options.email,
-      subject: options.subject,
-      html: options.message,
-    });
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "ElectroFix",
+          email: process.env.EMAIL_FROM,
+        },
+        to: [
+          {
+            email: options.email,
+          },
+        ],
+        subject: options.subject,
+        htmlContent: options.message,
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        timeout: 15000,
+      }
+    );
 
-    console.log("✅ Email Sent Successfully");
-    console.log(info);
+    console.log("✅ Email sent");
+    console.log(response.data);
 
-  } catch (error) {
-    console.error("❌ Email Error");
-    console.error(error);
+    return response.data;
+  } catch (err) {
+    console.log("========== BREVO ERROR ==========");
 
-    throw error;
+    if (err.response) {
+      console.log("Status:", err.response.status);
+      console.log("Data:", JSON.stringify(err.response.data, null, 2));
+    } else {
+      console.log(err.message);
+    }
+
+    console.log("================================");
+
+    throw err;
   }
-};
+}
 
 module.exports = sendEmail;
