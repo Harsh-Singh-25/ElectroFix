@@ -1,7 +1,4 @@
-
-    // Generates a friendly ticket ID and keeps the preview panel in sync as the person types.
-    
-   const form = document.getElementById("bookingForm");
+const form = document.getElementById("bookingForm");
 const ticketIdEl = document.getElementById("ticketId");
 const pNameEl = document.getElementById("pName");
 const pEmailEl = document.getElementById("pEmail");
@@ -67,7 +64,7 @@ form.addEventListener("submit", async function (e) {
 
     try {
 
-        const response = await fetch("https://electrofix-backend-dvun.onrender.com", {
+        const response = await fetch("https://electrofix-backend-dvun.onrender.com/api/booking", {
 
             method: "POST",
 
@@ -81,7 +78,12 @@ form.addEventListener("submit", async function (e) {
 
         });
 
-        const data = await response.json();
+        if (!response.ok) {
+  const errorData = await response.json();
+  throw new Error(errorData.message || "Something went wrong");
+}
+
+const data = await response.json();
 
         if (data.success) {
             ticketIdEl.textContent = data.booking.ticketId || "—";
@@ -100,12 +102,9 @@ form.addEventListener("submit", async function (e) {
     }
 
     catch (error) {
-
-        console.log(error);
-
-        alert("Server Error");
-
-    }
+    console.error(error);
+    alert(error.message);
+}
 
     submitBtn.disabled = false;
 
